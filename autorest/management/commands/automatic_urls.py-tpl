@@ -1,0 +1,27 @@
+from django.conf.urls import url
+from django.urls import include
+from rest_framework import serializers, viewsets, routers
+
+{% for model in models %}
+from {{ model.module }} import {{ model.name }}{% endfor %}
+
+{% for model in models %}
+class {{ model.name }}Serializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = {{ model.name }}
+        fields = [{% for field in model.fields %}
+            '{{ field }}', {% endfor %}
+        ]
+
+class {{ model.name }}ViewSet(viewsets.ModelViewSet):
+    queryset = {{ model.name }}.objects.all()
+    serializer_class = {{ model.name }}Serializer
+{% endfor %}
+
+router = routers.DefaultRouter()
+{% for model in models %}
+router.register(r'{{ model.lower_case_name_plural }}', {{ model.name }}ViewSet){% endfor %}
+
+urlpatterns = [
+    url(r'^', include(router.urls)),
+]
