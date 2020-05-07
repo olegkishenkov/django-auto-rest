@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django_extensions',
     'weblog.apps.WeblogConfig',
     'polls.apps.PollsConfig',
+    'rest_framework',
+    'autorest.apps.AutorestConfig',
 ]
 
 MIDDLEWARE = [
@@ -122,3 +124,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+REST_FRAMEWORK = {
+    # Allow anyone to do anything
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny'
+    ]
+}
