@@ -1,10 +1,40 @@
 # Serializers define the API representation.
+import copy
+
 from django.conf.urls import url
+from django.core.exceptions import ValidationError
 from django.urls import include
 from rest_framework import serializers, viewsets, routers
 
 from django.contrib.auth.models import User
 from polls.models import Question
+
+
+class GETparmasViewSet(viewsets.ModelViewSet):
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        query_params = copy.deepcopy(dict(self.request.query_params))
+        try:
+            order_by = query_params.pop('order_by')[0]
+        except KeyError:
+            order_by = None
+        try:
+            limit = int(query_params.pop('limit')[0])
+            if limit < 0:
+                limit = None
+        except (KeyError, ValueError):
+            limit = None
+        for key in query_params.keys():
+            query_params[key] = query_params[key][0]
+        try:
+            queryset = queryset.filter(**query_params)
+        except ValidationError:
+            pass
+        if order_by:
+            queryset = queryset.order_by(order_by)
+        if limit:
+            queryset = queryset[:limit]
+        return queryset
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -20,29 +50,17 @@ class QuestionSerializer(serializers.HyperlinkedModelSerializer):
 
 
 # ViewSets define the view behavior.
-class UserViewSet(viewsets.ModelViewSet):
+class UserViewSet(GETparmasViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
 
-class QuestionViewSet(viewsets.ModelViewSet):
+class QuestionViewSet(GETparmasViewSet):
     queryset = Question.objects.all()
     serializer_class = QuestionSerializer
 
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        id, order_by, limit = map(lambda _: self.request.query_params.get(_), ('id', 'order_by', 'limit'))
-        try:
-            limit = int(limit)
-        except ValueError:
-            limit = None
-        if id:
-            queryset = queryset.filter(id=id)
-        if order_by:
-            queryset = queryset.order_by(order_by)
-        if limit:
-            queryset = queryset[:limit]
-        return queryset
+
+
 
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
