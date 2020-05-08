@@ -34,7 +34,7 @@ class Command(BaseCommand):
                 models_.append(
                     {
                         'name': model.__name__,
-                        'lower_case_name_plural': lower_case_name_plural,
+                        'lower_case_name_plural': lower_case_name_plural,git
                         'module': model.__module__,
                         'fields': [field.name for field in model._meta.fields],
                     }
