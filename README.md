@@ -9,7 +9,7 @@ mysite project from the Django Tutorial with the autorest extension that generat
 1. Copy the autorest app directory to the root directory of your Django project;
 2. Add 'autorest' to the INSTALLED_APPS.
 ## Usage
-Run ```manage.py autorest```
+Publish a REST API for the models by running ```manage.py autorest```
 
 Read objects at the just created REST API with ```http://<host>/<path>/<model_name_plural>?<field_name1>=<value1>&<field_name2>=<value2>&order_by=<field_name_to_order_by>&limit=<max_number_of_objects_to_read>```.
 
