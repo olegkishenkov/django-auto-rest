@@ -1,5 +1,9 @@
 # mysite
 mysite project from the Django Tutorial with the autorest extension that generates a REST API for all the models of a Django project.
+# Requirements
+- Python 3.8.2
+- Django 3.0.5
+- DRF 3.11.0
 # Guide
 ## Setup
 1. Copy the autorest app directory to the root directory of your Django project;
