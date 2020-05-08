@@ -11,7 +11,9 @@ mysite project from the Django Tutorial with the autorest extension that generat
 ## Usage
 Run ```manage.py autorest```
 
-Read the just created REST API with ```http://<host>/<path>/<model_name_plural>?<field_name1>=<value1>&<field_name2>=<value2>&order_by=<field_name_to_order_by>&limit=<max_number_of_objects_to_read>```.
+Read objects at the just created REST API with ```http://<host>/<path>/<model_name_plural>?<field_name1>=<value1>&<field_name2>=<value2>&order_by=<field_name_to_order_by>&limit=<max_number_of_objects_to_read>```.
+
+Read a single object with a GET request to ```http://<host>/<path>/<model_name_plural>/<pk>```.
 
 Create an object with a POST request to ```http://<host>/<path>/<model_name_plural>```.
 
