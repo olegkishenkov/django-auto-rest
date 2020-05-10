@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'weblog.apps.WeblogConfig',
     'polls.apps.PollsConfig',
     'rest_framework',
+    'autorest.apps.AutorestConfig',
 ]
 
 MIDDLEWARE = [
