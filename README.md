@@ -1,5 +1,11 @@
 # mysite
 mysite project from the Django Tutorial with the autorest extension that generates a REST API for all the models of a Django project.
+# Release Description
+In this release the extension is implemented as a ```manage.py``` command which generates the ```automatic_urls.py``` file in the app's directory. ```automatic_urls.py``` contains the necessary serializers, viewsets and endpoints. It is contrasted to another aproach that assumes generating necessary classes on the fly.
+# Requirements
+- Python 3.8.2
+- Django 3.0.5
+- DRF 3.11.0
 # Guide
 ## Setup
 1. Copy the autorest app directory to the root directory of your Django project;
