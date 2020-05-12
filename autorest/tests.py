@@ -69,3 +69,31 @@ class TestAutorestPreView(TestCase):
         invalid_pk = 1
         response = self.client.delete(reverse('model-detail', args=['question', invalid_pk]))
         self.assertEqual(response.status_code, 404)
+
+    def test_question_list_api_not_installed(self):
+        with self.settings(AUTOREST_NOT_INSTALLED=True):
+            response = self.client.get(reverse('model-list', args=['questions']))
+            self.assertEqual(response.status_code, 501)
+
+    def test_question_create_api_not_installed(self):
+        with self.settings(AUTOREST_NOT_INSTALLED=True):
+            response = self.client.get(reverse('model-list', args=['questions']))
+            self.assertEqual(response.status_code, 501)
+
+    def test_question_retrieve_api_not_installed(self):
+        with self.settings(AUTOREST_NOT_INSTALLED=True):
+            arbitrary_pk = 1
+            response = self.client.get(reverse('model-detail', args=['questions', arbitrary_pk]))
+            self.assertEqual(response.status_code, 501)
+
+    def test_question_update_api_not_installed(self):
+        with self.settings(AUTOREST_NOT_INSTALLED=True):
+            arbitrary_pk = 1
+            response = self.client.get(reverse('model-detail', args=['questions', arbitrary_pk]))
+            self.assertEqual(response.status_code, 501)
+
+    def test_question_delete_api_not_installed(self):
+        with self.settings(AUTOREST_NOT_INSTALLED=True):
+            arbitrary_pk = 1
+            response = self.client.get(reverse('model-detail', args=['questions', arbitrary_pk]))
+            self.assertEqual(response.status_code, 501)

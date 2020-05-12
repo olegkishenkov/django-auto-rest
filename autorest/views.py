@@ -1,9 +1,9 @@
 import copy
 
 import django.apps
+from django.http import HttpResponse
 from rest_framework import viewsets
-from rest_framework.exceptions import ValidationError
-from rest_framework.response import Response
+from rest_framework.exceptions import ValidationError, APIException
 from rest_framework.serializers import HyperlinkedModelSerializer
 
 
@@ -39,6 +39,14 @@ class GETparamsViewSet(viewsets.ModelViewSet):
 
 
 def pre_view(request, model_name_plural, **kwargs):
+    autorest_not_installed = getattr(django.conf.settings, 'AUTOREST_NOT_INSTALLED', None)
+    if autorest_not_installed:
+        return HttpResponse(
+            'automatic REST API not implemented',
+            status=501,
+            reason='automatic REST API not implemented',
+        )
+
     # TODO: allow for identical model names in different apps
     models = django.apps.apps.get_models()
     model, model_name, model_class_name = None, None, None
@@ -47,7 +55,7 @@ def pre_view(request, model_name_plural, **kwargs):
             model, model_name, model_class_name = model_, model_._meta.model_name, model_.__name__
             break
     if not model:
-        return Response(status_code=404)
+        return HttpResponse('not found', status=404)
     meta_class = type('Meta', (), {
         'model': model,
         'fields': [field.name for field in model._meta.fields]
