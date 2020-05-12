@@ -90,5 +90,5 @@ Now it's time to retrieve the Question object with the ```id``` 3 by sending a G
 How about updating the same object by sending a PUT request to the same address?
 ![Image of the update of the Question object](https://github.com/oleg1248/mysite/blob/release-onthefly/art/question_update.png)
 
-Finally, we can destroy the objects by sending a DELETE request to the address, which we've already used three times:
+Finally, we can destroy the object by sending a DELETE request to the address, which we've already used three times:
 ![Image of the destruction of the Question object](https://github.com/oleg1248/mysite/blob/release-onthefly/art/question_destroy.png)
