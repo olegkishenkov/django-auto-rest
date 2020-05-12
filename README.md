@@ -8,7 +8,7 @@ In this release the extension is implemented as a 'pre-view' wrapper, which acts
 - DRF 3.11.0
 # Guide
 ## Setup
-1. ```python -m pip install --index-url https://test.pypi.org/simple autorest-oleg1248==0.0.2```
+1. ```python -m pip install --index-url https://test.pypi.org/simple autorest-oleg1248=0.0.4```
 2. Add ```autorest``` to the list of installed apps:
 ```
 INSTALLED_APPS = [
@@ -66,7 +66,7 @@ INSTALLED_APPS = [
 
 Second, let's install the ```autorest``` extension.
 
-```python -m pip install --index-url https://test.pypi.org/simple autorest-oleg1248==0.0.2```
+```python -m pip install --index-url https://test.pypi.org/simple autorest-oleg1248=0.0.4```
 
 ```
 INSTALLED_APPS = [
