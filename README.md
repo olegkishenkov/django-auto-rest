@@ -1,7 +1,7 @@
 # mysite
 mysite project from the Django Tutorial with the autorest extension that generates a REST API for all the models of a Django project.
 # Release Description
-In this release the extension is implemented as a 'pre-view' wrapper, which acts as a view and generates the necessary serializer and viewset classes on the fly upon receiving a request at the assumed API's URL. The extension is distributed as a Test PyPI package.
+In this release the extension is implemented as a 'pre-view' wrapper, which acts as a view and generates the necessary serializer and viewset classes on the fly upon receiving a request at the assumed API's URL. The crucial parts of the code are covered with tests. The extension is distributed as a Test PyPI package.
 # Requirements
 - Python 3.8.2
 - Django 3.0.5
@@ -53,7 +53,7 @@ class Choice(models.Model):
 # myproject/settings.py
 INSTALLED_APPS = [
     ...
-    'autorest.apps.AutorestConfig',
+    'polls.apps.PollsConfig',
     'rest_framework',
     ...
 ]
@@ -66,12 +66,23 @@ INSTALLED_APPS = [
 
 Second, let's install the ```autorest``` extension.
 
-```python -m pip install --index-url https://test.pypi.org/simple autorest-oleg1248==0.0.1```
+```python -m pip install --index-url https://test.pypi.org/simple autorest-oleg1248==0.0.2```
 
 ```
 INSTALLED_APPS = [
     ...
     'autorest.apps.AutorestConfig',
+    ...
+]
+```
+
+``` python
+# mysite/urls.py
+from django.urls import path, include
+
+urlpatterns = [
+    ...
+    path('', include('autorest.urls')),
     ...
 ]
 ```
