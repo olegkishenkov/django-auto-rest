@@ -1,5 +1,5 @@
-# mysite
-mysite project from the Django Tutorial with the autorest extension that generates a REST API for all the models of a Django project.
+# Django Auto REST
+Django Auto REST is a Django extension that generates a REST API for all the models of a Django project.
 # Release Description
 In this release the extension is implemented as a 'pre-view' wrapper, which acts as a view and generates the necessary serializer and viewset classes on the fly upon receiving a request at the assumed API's URL. The crucial parts of the code are covered with tests. The extension is distributed as a Test PyPI package.
 # Requirements
@@ -89,17 +89,17 @@ urlpatterns = [
 
 Third, let's use the REST API's browser interface to manipulate Question objects as described in the 'Usage' section. If we go to 
 ```http://127.0.0.1:8000/questions``` we'll see no objects. Let's create two question objects by sending POST requests to the same address:
-![Image of the creation of Question objects](https://github.com/oleg1248/mysite/raw/release-onthefly/art/question_create.png)
-![Image of the creation of Question objects 1](https://github.com/oleg1248/mysite/raw/release-onthefly/art/question_create_1.png)
+![Image of the creation of Question objects](https://github.com/oleg1248/django-auto-rest/raw/release-onthefly/art/question_create.png)
+![Image of the creation of Question objects 1](https://github.com/oleg1248/django-auto-rest/raw/release-onthefly/art/question_create_1.png)
 
 Then we can send a GET request to the same address and see the just created objects:
-![Image of the just created Question objects](https://github.com/oleg1248/mysite/raw/release-onthefly/art/question_list.png)
+![Image of the just created Question objects](https://github.com/oleg1248/django-auto-rest/raw/release-onthefly/art/question_list.png)
 
 Now it's time to retrieve the Question object with the ```id``` 3 by sending a GET request to ```http://127.0.0.1:8000/questions/3```:
-![Image of the retrieval of the Question object](https://github.com/oleg1248/mysite/raw/release-onthefly/art/question_retrieve.png)
+![Image of the retrieval of the Question object](https://github.com/oleg1248/django-auto-rest/raw/release-onthefly/art/question_retrieve.png)
 
 How about updating the same object by sending a PUT request to the same address?
-![Image of the update of the Question object](https://github.com/oleg1248/mysite/raw/release-onthefly/art/question_update.png)
+![Image of the update of the Question object](https://github.com/oleg1248/django-auto-rest/raw/release-onthefly/art/question_update.png)
 
 Finally, we can destroy the object by sending a DELETE request to the address, which we've already used three times:
-![Image of the destruction of the Question object](https://github.com/oleg1248/mysite/raw/release-onthefly/art/question_destroy.png)
+![Image of the destruction of the Question object](https://github.com/oleg1248/django-auto-rest/raw/release-onthefly/art/question_destroy.png)
