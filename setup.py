@@ -7,7 +7,7 @@ setuptools.setup(
     name="django-auto-rest", # Replace with your own username
     version="0.0.0",
     author="olegkishenkov",
-    author_email="oleg1248163264@gmail.com",
+    author_email="oleg.kishenkov@gmail.com",
     description="an automatic REST API for all the models in a Django project",
     long_description=long_description,
     long_description_content_type="text/markdown",
