@@ -103,3 +103,9 @@ How about updating the same object by sending a PUT request to the same address?
 
 Finally, we can destroy the object by sending a DELETE request to the address, which we've already used three times:
 ![Image of the destruction of the Question object](https://github.com/olegkishenkov/django-auto-rest/raw/release-onthefly/art/question_destroy.png)
+
+# Testing
+The tests covering the use of the Auto REST API on the Question model that are included in the extension may be run with:
+``` shell script
+python manage.py test
+```
