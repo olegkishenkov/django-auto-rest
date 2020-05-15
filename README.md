@@ -1,6 +1,6 @@
 # Django Auto REST
 Django Auto REST is a Django extension that generates a REST API for all the models of a Django project.
-# Implementation
+# Implementationpython
 In this release the extension is implemented as a 'pre-view' wrapper, which acts as a view and generates the necessary serializer and viewset classes on the fly upon receiving a request at the assumed API's URL. The crucial parts of the code are covered with tests. The extension is distributed as a Test PyPI package.
 # Requirements
 - Python 3.8.2
@@ -8,12 +8,12 @@ In this release the extension is implemented as a 'pre-view' wrapper, which acts
 - DRF 3.11.0
 # Guide
 ## Setup
-1. ```python -m pip install --index-url https://test.pypi.org/simple django-auto-rest=0.1.0```
-2. Add ```autorest``` to the list of installed apps:
+1. ```python -m pip install --index-url https://test.pypi.org/simple django-auto-rest=0.1.1```
+2. Add ```auto_rest``` to the list of installed apps:
 ```
 INSTALLED_APPS = [
     ...
-    'autorest.apps.AutorestConfig',
+    'auto_rest.apps.AutorestConfig',
     ...
 ]
 ```
@@ -28,7 +28,7 @@ Modify an object with a PUT request to ```http://<host>/<path>/<model_name_plura
 Delete an object with a DELETE request to ```http://<host>/<path>/<model_name_plural>/<pk>```. 
 
 # Demonsrtation
-The demonstration shows how the ```autorest``` extension is run on the models of the ```polls``` app from the [original Django tutorial](https://docs.djangoproject.com/en/3.0/intro/tutorial01/). First, let's create the project with the app:
+The demonstration shows how the ```Auto REST``` extension is run on the models of the ```polls``` app from the [original Django tutorial](https://docs.djangoproject.com/en/3.0/intro/tutorial01/). First, let's create the project with the app:
 
 ```django-admin startproject mysite```
 
@@ -64,14 +64,14 @@ INSTALLED_APPS = [
 
 ```python manage.py runserver```
 
-Second, let's install the ```autorest``` extension.
+Second, let's install the ```Auto REST``` extension.
 
-```python -m pip install --index-url https://test.pypi.org/simple django-auto-rest=0.1.0```
+```python -m pip install --index-url https://test.pypi.org/simple django-auto-rest=0.1.1```
 
 ```
 INSTALLED_APPS = [
     ...
-    'autorest.apps.AutorestConfig',
+    'auto_rest.apps.AutorestConfig',
     ...
 ]
 ```
@@ -82,7 +82,7 @@ from django.urls import path, include
 
 urlpatterns = [
     ...
-    path('', include('autorest.urls')),
+    path('', include('auto_rest.urls')),
     ...
 ]
 ```
