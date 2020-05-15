@@ -4,7 +4,7 @@ from django.test import TestCase
 # Create your tests here.
 from rest_framework.reverse import reverse
 
-from polls.models import Question
+from .models import Question
 
 
 class TestAutorestPreView(TestCase):
