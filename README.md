@@ -13,7 +13,7 @@ In this release the extension is implemented as a 'pre-view' wrapper, which acts
 ```
 INSTALLED_APPS = [
     ...
-    'auto_rest.apps.AutorestConfig',
+    'auto_rest.apps.AutoRestConfig',
     ...
 ]
 ```
@@ -71,7 +71,7 @@ Second, let's install the ```Auto REST``` extension.
 ```
 INSTALLED_APPS = [
     ...
-    'auto_rest.apps.AutorestConfig',
+    'auto_rest.apps.AutoRestConfig',
     ...
 ]
 ```
