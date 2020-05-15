@@ -11,7 +11,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.staticfiles',
     'tests.apps.TestsConfig',
-    'auto_rest.apps.AutorestConfig',
+    'auto_rest.apps.AutoRestConfig',
     'rest_framework',
 ]
 

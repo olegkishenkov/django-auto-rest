@@ -1,6 +1,5 @@
 from django.apps import AppConfig
 
 
-# TODO: rename the AutorestConfig class to AutoRestConfig
-class AutorestConfig(AppConfig):
+class AutoRestConfig(AppConfig):
     name = 'auto_rest'
