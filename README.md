@@ -8,7 +8,7 @@ In this release the extension is implemented as a 'pre-view' wrapper, which acts
 - DRF 3.11.0
 # Guide
 ## Setup
-1. ```python -m pip install --index-url https://test.pypi.org/simple autorest-olegkishenkov=0.0.0```
+1. ```python -m pip install --index-url https://test.pypi.org/simple django-auto-rest=0.0.0```
 2. Add ```autorest``` to the list of installed apps:
 ```
 INSTALLED_APPS = [
@@ -66,7 +66,7 @@ INSTALLED_APPS = [
 
 Second, let's install the ```autorest``` extension.
 
-```python -m pip install --index-url https://test.pypi.org/simple autorest-olegkishenkov=0.0.0```
+```python -m pip install --index-url https://test.pypi.org/simple django-auto-rest=0.0.0```
 
 ```
 INSTALLED_APPS = [
