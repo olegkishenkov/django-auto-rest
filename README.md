@@ -1,14 +1,14 @@
 # Auto REST
 Auto REST is a Django extension that generates a REST API for all the models of a Django project.
 # Implementation
-In this release the extension is implemented as a 'pre-view' wrapper, which acts as a view and generates the necessary serializer and viewset classes on the fly upon receiving a request at the assumed API's URL. The crucial parts of the code are covered with tests. The extension is distributed as a Test PyPI package.
+In this release the extension is implemented as a 'pre-view' wrapper, which acts as a view and generates the necessary serializer and viewset classes on the fly upon receiving a request at the assumed API's URL. The crucial parts of the code are covered with tests. The extension is distributed as a Python package.
 # Requirements
 - Python 3.8.2
 - Django 3.0.5
 - DRF 3.11.0
 # Guide
 ## Setup
-1. ```python -m pip install --index-url https://pypi.org/project/django-auto-rest/0.1.6```
+1. ```python -m pip install djnago-auto-rest```
 2. Add ```auto_rest``` to the list of installed apps:
 ```
 INSTALLED_APPS = [
@@ -66,7 +66,7 @@ INSTALLED_APPS = [
 
 Second, let's install the ```Auto REST``` extension.
 
-```python -m pip install --index-url https://pypi.org/project/django-auto-rest/0.1.6```
+```python -m pip install django-auto-rest```
 
 ```
 INSTALLED_APPS = [
