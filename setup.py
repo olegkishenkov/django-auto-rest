@@ -11,7 +11,7 @@ setuptools.setup(
     description="an automatic REST API for all the models in a Django project",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/olegkishenkov/mysite/tree/release-onthefly",
+    url="https://github.com/olegkishenkov/django-auto-rest",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
