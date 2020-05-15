@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="django-auto-rest", # Replace with your own username
-    version="0.1.2 ",
+    version="0.1.4",
     author="olegkishenkov",
     author_email="oleg.kishenkov@gmail.com",
     description="an automatic REST API for all the models in a Django project",
