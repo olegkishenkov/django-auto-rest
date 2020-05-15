@@ -1,5 +1,5 @@
-# Django Auto REST
-Django Auto REST is a Django extension that generates a REST API for all the models of a Django project.
+# Auto REST
+Auto REST is a Django extension that generates a REST API for all the models of a Django project.
 # Implementation
 In this release the extension is implemented as a 'pre-view' wrapper, which acts as a view and generates the necessary serializer and viewset classes on the fly upon receiving a request at the assumed API's URL. The crucial parts of the code are covered with tests. The extension is distributed as a Test PyPI package.
 # Requirements
@@ -8,7 +8,7 @@ In this release the extension is implemented as a 'pre-view' wrapper, which acts
 - DRF 3.11.0
 # Guide
 ## Setup
-1. ```python -m pip install --index-url https://test.pypi.org/simple django-auto-rest=0.1.2```
+1. ```python -m pip install --index-url https://test.pypi.org/simple django-auto-rest=0.1.3```
 2. Add ```auto_rest``` to the list of installed apps:
 ```
 INSTALLED_APPS = [
@@ -66,7 +66,7 @@ INSTALLED_APPS = [
 
 Second, let's install the ```Auto REST``` extension.
 
-```python -m pip install --index-url https://test.pypi.org/simple django-auto-rest=0.1.2```
+```python -m pip install --index-url https://test.pypi.org/simple django-auto-rest=0.1.3```
 
 ```
 INSTALLED_APPS = [
@@ -103,3 +103,9 @@ How about updating the same object by sending a PUT request to the same address?
 
 Finally, we can destroy the object by sending a DELETE request to the address, which we've already used three times:
 ![Image of the destruction of the Question object](https://github.com/olegkishenkov/django-auto-rest/raw/master/art/question_destroy.png)
+
+# Testing
+The tests covering the use of the Auto REST API on the Question model that are included in the extension may be run with:
+``` shell script
+python manage.py test
+```
