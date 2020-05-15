@@ -12,6 +12,7 @@ with open('README.md', 'r+') as fh:
     text = re.sub(pattern, repl, text, 2)
     fh.seek(0)
     fh.write(text)
+    print('bumped the version in README.md:\n{}'.format('\n'.join(re.findall(pattern, text))))
 
 with open('setup.py', 'r+') as fh:
     text = fh.read()
@@ -22,4 +23,5 @@ with open('setup.py', 'r+') as fh:
     text = re.sub(pattern, repl, text, 2)
     fh.seek(0)
     fh.write(text)
+    print('\nbumped the version in setup.py:\n{}'.format('\n'.join(re.findall(pattern, text))))
 
