@@ -4,8 +4,8 @@ Auto REST is a Django extension that generates a REST API for all the models of 
 In this release the extension is implemented as a 'pre-view' wrapper, which acts as a view and generates the necessary serializer and viewset classes on the fly upon receiving a request at the assumed API's URL. The crucial parts of the code are covered with tests. The extension is distributed as a Python package.
 # Requirements
 - Python 3.8.2
-- Django 3.0.5
-- DRF 3.11.0
+- Django 3.1.12
+- DRF 3.11.2
 # Guide
 ## Setup
 1. ```python -m pip install djnago-auto-rest```
@@ -30,7 +30,7 @@ Delete an object with a DELETE request to ```http://<host>/<path>/<model_name_pl
 # Demonsrtation
 The demonstration shows how the ```Auto REST``` extension is run on the models of the ```polls``` app from the [original Django tutorial](https://docs.djangoproject.com/en/3.0/intro/tutorial01/). First, let's create the project with the app:
 
-```django-admin startproject mysite```
+```django-admin startproject mysite && cd mysite```
 
 ```python manage.py startapp polls```
 
