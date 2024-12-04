@@ -1,14 +1,19 @@
 import copy
 
 import django.apps
+from django.db.models import ForeignKey
 from django.http import HttpResponse
 from rest_framework import viewsets
-from rest_framework.exceptions import ValidationError, APIException
+from rest_framework.exceptions import ValidationError
+from rest_framework.relations import HyperlinkedRelatedField
 from rest_framework.serializers import HyperlinkedModelSerializer
 
 
 def _single_from_plural(s):
     return s.rstrip('ies') + 'y' if s.endswith('ies') else s.rstrip('s')
+
+def _plural_from_singular(s):
+    return s.rstrip('y') + 'ies' if s.endswith('y') else s + 's'
 
 
 class GETparamsViewSet(viewsets.ModelViewSet):
@@ -38,6 +43,53 @@ class GETparamsViewSet(viewsets.ModelViewSet):
         return queryset
 
 
+def make_serializer_class(model):
+    fk_related_models = [field.related_model for field in model._meta.fields if isinstance(field, ForeignKey)]
+
+    fields = {}
+    fields_for_meta = [field.name for field in model._meta.fields]
+    for model_ in fk_related_models:
+        fields.update({model_._meta.model_name: AutoHyperlinkedRelatedField(
+            read_only=True,
+            view_name='model-detail',
+        )})
+
+    meta_class = type('Meta', (), {
+        'model': model,
+        'fields': fields_for_meta,
+    })
+    serializer_class = type(
+        model.__name__ + 'Serializer',
+        (HyperlinkedModelSerializer, ),
+        {'Meta': meta_class, **fields},
+    )
+
+    return serializer_class
+
+
+def make_viewset_class(model):
+    serializer_class = make_serializer_class(model)
+
+    viewset_class = type(model.__name__ + 'ViewSet', (GETparamsViewSet,), {
+        'queryset': model.objects.all(),
+        'serializer_class': serializer_class
+    })
+
+    return viewset_class
+
+
+class AutoHyperlinkedRelatedField(HyperlinkedRelatedField):
+    def get_url(self, obj, view_name, request, format):
+        if hasattr(obj, 'pk') and obj.pk in (None, ''):
+            return None
+
+        lookup_value = getattr(obj, self.lookup_field)
+        kwargs = {
+            'model_name_plural': _plural_from_singular(self.field_name),
+            self.lookup_url_kwarg: lookup_value,
+        }
+        return self.reverse(view_name, kwargs=kwargs, request=request, format=format)
+
 def pre_view(request, model_name_plural, **kwargs):
     autorest_not_installed = getattr(django.conf.settings, 'AUTOREST_NOT_INSTALLED', None)
     if autorest_not_installed:
@@ -56,15 +108,9 @@ def pre_view(request, model_name_plural, **kwargs):
             break
     if not model:
         return HttpResponse('not found', status=404)
-    meta_class = type('Meta', (), {
-        'model': model,
-        'fields': [field.name for field in model._meta.fields]
-    })
-    serializer_class = type(model_class_name + 'Serializer', (HyperlinkedModelSerializer,), {'Meta': meta_class})
-    viewset_class = type(model_class_name + 'ViewSet', (GETparamsViewSet,), {
-        'queryset': model.objects.all(),
-        'serializer_class': serializer_class
-    })
+
+    viewset_class = make_viewset_class(model)
+
     if not kwargs.get('pk', None):
         view = viewset_class.as_view({'get': 'list', 'post': 'create'})
     else:
