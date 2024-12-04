@@ -1,4 +1,4 @@
-import copy
+from copy import copy
 
 import django.apps
 from django.db.models import ForeignKey
@@ -19,27 +19,44 @@ def _plural_from_singular(s):
 class GETparamsViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         queryset = super().get_queryset()
-        query_params = copy.deepcopy(dict(self.request.query_params))
+
+        # order_by = self.request.query_params.get('order_by', None)
+        #
+        # limit = self.request.query_params.get('limit', None)
+        # if (limit is not None) and (not limit.isnumeric() or int(limit) < 0):
+        #     limit = None
+        # else:
+        #     limit = int(limit)
+        #
+        # query_params = {key: value for key, value in dict(self.request.query_params).items() if key not in ('order_by', 'limit')}
+
+        query_params = copy(dict(self.request.query_params))
         try:
             order_by = query_params.pop('order_by')[0]
         except KeyError:
             order_by = None
+
         try:
             limit = int(query_params.pop('limit')[0])
             if limit < 0:
                 limit = None
         except (KeyError, ValueError):
             limit = None
+
         for key in query_params.keys():
             query_params[key] = query_params[key][0]
+
         try:
             queryset = queryset.filter(**query_params)
         except ValidationError:
             pass
+
         if order_by:
             queryset = queryset.order_by(order_by)
+
         if limit:
             queryset = queryset[:limit]
+
         return queryset
 
 
